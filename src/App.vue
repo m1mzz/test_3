@@ -1,47 +1,49 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import TheHeader from './components/header/TheHeader.vue';
+import SideBar from './components/side-bar/SideBar.vue';
+import PageContactsViewer from './pages/contacts/PageContactsViewer.vue';
+import RouterBreadcrumbs from './components/breadcrumbs/RouterBreadcrumbs.vue';
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <q-layout
+    view="lHh Lpr lff"
+    container
+    style="height: 300px"
+    class="full-height text-neutral"
+  >
+    <TheHeader />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+    <SideBar />
 
-  <main>
-    <TheWelcome />
-  </main>
+    <q-page-container class="app__main-container">
+      <q-page class="q-px-md">
+        <div class="app__main-content q-px-md">
+          <RouterBreadcrumbs />
+          <!-- Router-view -->
+          <PageContactsViewer />
+        </div>
+      </q-page>
+    </q-page-container>
+  </q-layout>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style lang="scss">
+HTML,
+BODY,
+#app {
+  height: 100%;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+.app {
+  &__main-content {
+    max-width: 1100px;
+    margin: 0 auto;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  &__main-container {
+    background: $bg-main;
   }
 }
 </style>

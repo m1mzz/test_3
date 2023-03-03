@@ -1,0 +1,17 @@
+//Font face mixin
+@mixin font-face($family, $path, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: $family;
+    src: 
+      url("#{$path}.woff2") format('woff2'),
+      url("#{$path}.woff") format('woff');
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
+}
+
+@include font-face('Segoe UI', '../fonts/segoe-ui/segoeui-light', 300);
+@include font-face('Segoe UI', '../fonts/segoe-ui/segoeui-regular');
+@include font-face('Segoe UI', '../fonts/segoe-ui/segoeui-semibold', 600);
+@include font-face('Segoe UI', '../fonts/segoe-ui/segoeui-bold', 700);
