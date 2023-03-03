@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import logoImgPath from '@/assets/icons/logo.svg';
+import SideBarItem from './SideBarItem.vue';
 
 const miniState = ref(true);
 
@@ -8,6 +10,49 @@ const drawer = ref(false);
 const toggleMenu = () => {
   miniState.value = !miniState.value;
 };
+
+const menu = [
+  {
+    label: 'Home',
+    icon: 'home',
+  },
+  {
+    label: 'Messenger',
+    icon: 'question_answer',
+  },
+  {
+    label: 'Ticket',
+    icon: 'mail',
+  },
+  {
+    label: 'Campaign',
+    icon: 'campaign',
+  },
+  {
+    label: 'Contacts',
+    icon: 'person',
+  },
+  {
+    label: 'Task',
+    icon: 'assignment_turned_in',
+  },
+  {
+    label: 'Deal',
+    icon: 'monetization_on',
+  },
+  {
+    label: 'Files',
+    icon: 'folder',
+  },
+  {
+    label: 'Automations',
+    icon: 'play_circle_outline',
+  },
+  {
+    label: 'Reports',
+    icon: 'assessment',
+  },
+];
 </script>
 
 <template>
@@ -22,33 +67,24 @@ const toggleMenu = () => {
   >
     <template #mini>
       <q-scroll-area class="fit mini-slot cursor-pointer">
-        <div class="q-py-lg">
-          <div class="column items-start">
-            <q-icon
-              name="home"
-              color="grey-6"
-              class="mini-icon"
-            />
-            <q-icon
-              name="forum"
-              color="grey-6"
-              class="mini-icon"
-            />
-            <q-icon
-              name="send"
-              color="grey-6"
-              class="mini-icon"
-            />
-            <q-icon
-              name="drafts"
-              color="grey-6"
-              class="mini-icon"
-            />
-          </div>
-        </div>
+        <q-btn
+          class="full-width text-white text-weight-bolder"
+          size="18px"
+          no-caps
+          unelevated
+          :icon="'img:' + logoImgPath"
+        />
+        <q-list padding>
+          <SideBarItem
+            v-for="menuItem in menu"
+            :key="menuItem.label"
+            :icon="menuItem.icon"
+            :label="menuItem.label"
+          />
+        </q-list>
       </q-scroll-area>
       <q-btn
-        class="button-minimize-menu"
+        class="button-minimize-menu text-light"
         flat
         round
         dense
@@ -58,60 +94,31 @@ const toggleMenu = () => {
     </template>
 
     <q-scroll-area class="fit text-grey-6">
+      <q-btn
+        class="full-width text-white text-weight-bolder"
+        size="18px"
+        no-caps
+        unelevated
+        label="Touchpoint"
+        :icon="'img:' + logoImgPath"
+      />
       <q-list padding>
-        <q-item
-          v-ripple
-          clickable
-        >
-          <q-icon
-            name="home"
-            class="mini-icon"
-          />
-          <q-item-section>
-            Inbox
-          </q-item-section>
-        </q-item>
-
-        <q-item
-          v-ripple
-          active
-          clickable
-        >
-          <q-icon
-            name="forum"
-            class="mini-icon"
-          />
-          <q-item-section>
-            Star
-          </q-item-section>
-        </q-item>
-
-        <q-item
-          v-ripple
-          clickable
-        >
-          <q-item-section>
-            Send
-          </q-item-section>
-        </q-item>
-
-        <q-item
-          v-ripple
-          clickable
-        >
-          <q-item-section>
-            Drafts
-          </q-item-section>
-        </q-item>
+        <SideBarItem
+          v-for="menuItem in menu"
+          :key="menuItem.label"
+          :icon="menuItem.icon"
+          :label="menuItem.label"
+        />
       </q-list>
     </q-scroll-area>
 
     <q-btn
-      class="button-minimize-menu"
+      class="button-minimize-menu text-light text-600 full-width"
       flat
-      round
       dense
-      icon="menu"
+      no-caps
+      icon="menu_open"
+      label="Minimize menu"
       @click="toggleMenu"
     />
   </q-drawer>
@@ -119,9 +126,6 @@ const toggleMenu = () => {
 
 <style lang="scss">
 .side-bar {
-  // background: radial-gradient(#36364b 0 82%, #2f2f44 82%) no-repeat;
-  // background-size: 240vh 113vh;
-  // background-position: 100% 71%;
   background: radial-gradient(#36364b 0 82%, #2f2f44 82%) no-repeat;
   background-size: 193vh 103vh;
   background-position: 100% 71%;
@@ -130,27 +134,8 @@ const toggleMenu = () => {
 
 .button-minimize-menu {
   position: absolute;
-  bottom: 0;
+  bottom: 0.5rem;
   left: 50%;
   transform: translateX(-50%);
-}
-
-.mini-slot {
-  transition: background-color .28s;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, .04);
-  }
-
-}
-
-.mini-icon {
-  font-size: 1.718em;
-  padding: 2px 16px;
-
-  &+& {
-    margin-top: 18px;
-  }
-
 }
 </style>

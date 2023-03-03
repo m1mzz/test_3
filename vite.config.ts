@@ -2,7 +2,6 @@ import { fileURLToPath, URL } from 'node:url';
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import svgLoader from 'vite-svg-loader';
 import eslintPlugin from 'vite-plugin-eslint';
 import { quasar, transformAssetUrls } from '@quasar/vite-plugin';
 
@@ -12,7 +11,6 @@ export default defineConfig({
     vue({
       template: { transformAssetUrls },
     }),
-    svgLoader(),
     eslintPlugin(),
     quasar({
       sassVariables: 'src/plugins/quasar/quasar-variables.scss',
