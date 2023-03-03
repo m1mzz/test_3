@@ -1,9 +1,5 @@
 <script setup lang="ts">
 
-const onItemClick = () => {
-  console.log(1);
-};
-
 const list = [
   [
     {
@@ -74,7 +70,6 @@ const list = [
           v-close-popup
           clickable
           class="flex items-center no-wrap gap-2"
-          @click="onItemClick"
         >
           <q-icon
             class="text-distinct"
