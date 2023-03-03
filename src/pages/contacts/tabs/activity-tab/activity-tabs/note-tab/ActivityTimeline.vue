@@ -25,6 +25,14 @@ const priorityIconColorMapper: Record<ActivityPriority, string> = {
   high: 'text-negative',
   urgent: 'text-negative',
 };
+
+const DAYS_NEAR = 1;
+const getTimeIndicator = (time: string) => {
+  const diff = new Date(time).getTime() - Date.now();
+  if (diff < 0) return 'negative';
+  if (diff < DAYS_NEAR * 24 * 60 * 60 * 1000) return 'orange';
+  return null;
+};
 </script>
 
 <template>
@@ -44,7 +52,10 @@ const priorityIconColorMapper: Record<ActivityPriority, string> = {
             {{ activity.type }}
           </span>
           <q-space />
-          <span class="text-light text-400">
+          <span
+            class="text-light text-400"
+            :class="`text-${getTimeIndicator(activity.date)}`"
+          >
             {{ activity.date }}
           </span>
         </div>
